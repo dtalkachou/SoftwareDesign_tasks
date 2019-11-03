@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">HelloApp</string>
+    <string name="version_name">Version name</string>
+    <string name="device_id">Device ID</string>
+    <string name="id_hidden">Device ID is hidden</string>
+</resources>
