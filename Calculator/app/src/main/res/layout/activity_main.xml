@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:background="@color/colorBackground"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorText"
+            android:textSize="48sp"
+            android:gravity="end|bottom"
+            android:layout_margin="22sp"
+            android:text="123" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:orientation="vertical"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:weightSum="4">
+
+            <Button
+                style="@style/Button.Base"
+                android:background="@drawable/func_button"
+                android:textColor="@color/colorAccent"
+                android:text="C" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="+/–"
+                android:background="@drawable/func_button" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="%"
+                android:background="@drawable/func_button" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="÷"
+                android:background="@drawable/operation_button" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:weightSum="4">
+
+            <Button
+                style="@style/Button.Base"
+                android:background="@drawable/num_button"
+                android:text="7" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="8"
+                android:background="@drawable/num_button" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="9"
+                android:background="@drawable/num_button" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="×"
+                android:background="@drawable/operation_button" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:weightSum="4">
+
+            <Button
+                style="@style/Button.Base"
+                android:background="@drawable/num_button"
+                android:text="4" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="5"
+                android:background="@drawable/num_button" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="6"
+                android:background="@drawable/num_button" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="–"
+                android:background="@drawable/operation_button" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:weightSum="4">
+
+            <Button
+                style="@style/Button.Base"
+                android:background="@drawable/num_button"
+                android:text="1" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="2"
+                android:background="@drawable/num_button" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="3"
+                android:background="@drawable/num_button" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="+"
+                android:background="@drawable/operation_button" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:weightSum="4">
+
+            <Button
+                style="@style/Button.Base"
+                android:layout_weight="2"
+                android:background="@drawable/num_button"
+                android:text="0" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="."
+                android:background="@drawable/num_button" />
+
+            <Button
+                style="@style/Button.Base"
+                android:text="="
+                android:background="@drawable/equal_button" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
