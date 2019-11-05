@@ -25,20 +25,15 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
         android:orientation="vertical"
-        android:weightSum="5">
+        android:stretchColumns="*">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:weightSum="4">
-
+        <TableRow
+            android:layout_weight="1" >
             <Button
                 style="@style/Button.Base"
                 android:background="@drawable/func_button"
@@ -60,15 +55,10 @@
                 android:text="÷"
                 android:background="@drawable/operation_button" />
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:weightSum="4">
-
+        <TableRow
+            android:layout_weight="1" >
             <Button
                 style="@style/Button.Base"
                 android:background="@drawable/num_button"
@@ -89,15 +79,10 @@
                 android:text="×"
                 android:background="@drawable/operation_button" />
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:weightSum="4">
-
+        <TableRow
+            android:layout_weight="1" >
             <Button
                 style="@style/Button.Base"
                 android:background="@drawable/num_button"
@@ -118,15 +103,10 @@
                 android:text="–"
                 android:background="@drawable/operation_button" />
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:weightSum="4">
-
+        <TableRow
+            android:layout_weight="1" >
             <Button
                 style="@style/Button.Base"
                 android:background="@drawable/num_button"
@@ -147,33 +127,29 @@
                 android:text="+"
                 android:background="@drawable/operation_button" />
 
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:weightSum="4">
+        <TableRow
+            android:layout_weight="1" >
 
             <Button
                 style="@style/Button.Base"
-                android:layout_weight="2"
+                android:layout_span="2"
                 android:background="@drawable/num_button"
                 android:text="0" />
 
             <Button
                 style="@style/Button.Base"
-                android:text="."
-                android:background="@drawable/num_button" />
+                android:background="@drawable/num_button"
+                android:text="." />
 
             <Button
                 style="@style/Button.Base"
-                android:text="="
-                android:background="@drawable/equal_button" />
+                android:background="@drawable/equal_button"
+                android:text="=" />
 
-        </LinearLayout>
+        </TableRow>
 
-    </LinearLayout>
+    </TableLayout>
 
 </LinearLayout>

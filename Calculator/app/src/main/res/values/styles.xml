@@ -13,11 +13,10 @@
 
     <style name="Button.Base" parent="@style/Widget.AppCompat.Button">
         <item name="android:stateListAnimator">@null</item>
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:textSize">30sp</item>
-        <item name="android:layout_margin">.4dp</item>
+        <item name="android:layout_margin">.45dp</item>
         <item name="android:textColor">#fafafa</item>
         <item name="android:fontFamily">@font/lato</item>
     </style>
