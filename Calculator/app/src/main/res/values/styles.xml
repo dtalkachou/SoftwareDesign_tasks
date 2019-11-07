@@ -7,14 +7,12 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:textViewStyle">@style/TextView.Base</item>
-        <item name="android:buttonStyle">@style/Button.Base</item>
     </style>
 
     <style name="Button.Base" parent="@style/Widget.AppCompat.Button">
         <item name="android:stateListAnimator">@null</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">30sp</item>
         <item name="android:layout_margin">.45dp</item>
         <item name="android:textColor">#fafafa</item>

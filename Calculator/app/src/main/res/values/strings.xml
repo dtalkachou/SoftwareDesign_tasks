@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Calculator</string>
+
+    <string name="N0">0</string>
+    <string name="N1">1</string>
+    <string name="N2">2</string>
+    <string name="N3">3</string>
+    <string name="N4">4</string>
+    <string name="N5">5</string>
+    <string name="N6">6</string>
+    <string name="N7">7</string>
+    <string name="N8">8</string>
+    <string name="N9">9</string>
+    <string name="addition">+</string>
+    <string name="subtraction">–</string>
+    <string name="multiplication">×</string>
+    <string name="division">÷</string>
+    <string name="equals">=</string>
+    <string name="point">.</string>
+    <string name="clear">C</string>
+    <string name="all_clear">AC</string>
+    <string name="signed">+/–</string>
+    <string name="percent">%</string>
 </resources>
