@@ -9,8 +9,13 @@ import org.mariuszgromada.math.mxparser.Expression;
 import java.lang.Double;
 
 public class CalculatorModel implements Parcelable {
+    private int maxInputLength = 10;
     private StringBuilder inputNum, history;
     private State state;
+
+    public void setMaxInputLength(int maxInputLength) {
+        this.maxInputLength = maxInputLength;
+    }
 
     @Override
     public int describeContents() {
@@ -73,6 +78,10 @@ public class CalculatorModel implements Parcelable {
             clear();
         }
 
+        if (inputNum.length() == maxInputLength) {
+            return false;
+        }
+
         state = State.argInput;
         if (inputNum.toString().matches("^(|-)0$")) {
             if (num.equals("0")) {
@@ -89,6 +98,10 @@ public class CalculatorModel implements Parcelable {
     public void onDecimalSeparatorPressed() {
         if (state == State.showResult) {
             clearHistory();
+        }
+
+        if (inputNum.length() == maxInputLength) {
+            return;
         }
 
         state = State.argInput;
@@ -115,9 +128,18 @@ public class CalculatorModel implements Parcelable {
     }
 
     public void onPercentPressed() {
+        if (state == State.showResult) {
+            clearHistory();
+        }
+
+        if (inputNum.length() == maxInputLength) {
+            return;
+        }
+
+        state = State.argInput;
         double num = Double.parseDouble(inputNum.toString());
         inputNum.setLength(0);
-        inputNum.append(num / 100);
+        inputNum.append(doubleNumProcess(num / 100));
     }
 
     public void onOperationPressed(int operationId) {
