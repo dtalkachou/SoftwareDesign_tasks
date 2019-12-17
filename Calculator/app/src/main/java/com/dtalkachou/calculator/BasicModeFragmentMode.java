@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class BasicModeFragment extends CalculatorBaseFragment {
+public class BasicModeFragmentMode extends CalculatorModeBaseFragment {
     private Button cancelBtn;
 
     @Override

@@ -24,7 +24,8 @@ public class CalculatorModel implements Parcelable {
         dest.writeInt(state.ordinal());
     }
 
-    public static final Parcelable.Creator<CalculatorModel> CREATOR = new Parcelable.Creator<CalculatorModel>() {
+    public static final Parcelable.Creator<CalculatorModel> CREATOR = new
+            Parcelable.Creator<CalculatorModel>() {
         public CalculatorModel createFromParcel(Parcel in) {
             return new CalculatorModel(in);
         }

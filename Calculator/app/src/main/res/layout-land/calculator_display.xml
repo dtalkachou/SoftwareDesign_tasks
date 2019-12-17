@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="22dp"
+    android:paddingVertical="12dp"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:scrollbars="none">
+
+        <TextView
+            android:id="@+id/history_str"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:gravity="end"
+            android:textColor="@color/colorGray"
+            android:textSize="24sp" />
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/input_str"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:maxLines="1"
+        android:gravity="bottom|right"
+        android:text="0"
+        android:textColor="@color/colorText"
+        android:textSize="36sp" />
+
+</LinearLayout>

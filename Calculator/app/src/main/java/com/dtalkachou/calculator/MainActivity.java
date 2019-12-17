@@ -1,22 +1,25 @@
 package com.dtalkachou.calculator;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.dtalkachou.handlers.CalculatorModel;
 
-public class MainActivity extends AppCompatActivity implements CalculatorBaseFragment.OnCalculatorButtonPressedListener {
+public class MainActivity extends AppCompatActivity
+        implements CalculatorModeBaseFragment.OnCalculatorButtonPressedListener {
     private TextView inputNum, historyStr;
     private CalculatorModel calculator;
 
     public CalculatorModel getCalculator() {
         return calculator;
+    }
+
+    public void setCalculator(CalculatorModel calculator) {
+        this.calculator = calculator;
     }
 
     @Override
@@ -26,10 +29,6 @@ public class MainActivity extends AppCompatActivity implements CalculatorBaseFra
 
         inputNum = findViewById(R.id.input_str);
         historyStr = findViewById(R.id.history_str);
-
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            initChangeMode();
-        }
 
         if (savedInstanceState == null) {
             calculator = new CalculatorModel();
@@ -47,22 +46,6 @@ public class MainActivity extends AppCompatActivity implements CalculatorBaseFra
         super.onRestoreInstanceState(savedInstanceState);
         calculator = savedInstanceState.getParcelable("calculator");
         onCalculatorButtonPressed();
-    }
-
-    private void initChangeMode() {
-        findViewById(R.id.change_mode).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                if (getSupportFragmentManager().findFragmentById(R.id.mode) instanceof BasicModeFragment) {
-                    fragmentTransaction.replace(R.id.mode, new ScientificModeFragment());
-                }
-                else {
-                    fragmentTransaction.replace(R.id.mode, new BasicModeFragment());
-                }
-                fragmentTransaction.commit();
-            }
-        });
     }
 
     @Override

@@ -8,42 +8,14 @@
     android:weightSum="10"
     tools:context=".MainActivity" >
 
-    <LinearLayout
+    <fragment
+        class="com.dtalkachou.calculator.CalculatorDisplayFragment"
+        android:id="@+id/calculator_display"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="bottom"
-        android:layout_weight="3"
-        android:paddingHorizontal="22dp"
-        android:paddingVertical="12dp"
-        android:orientation="vertical">
+        android:layout_weight="3">
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:scrollbars="none">
-
-            <TextView
-                android:id="@+id/history_str"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:maxLines="1"
-                android:gravity="end"
-                android:textColor="@color/colorGray"
-                android:textSize="24sp" />
-        </HorizontalScrollView>
-
-        <TextView
-            android:id="@+id/input_str"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:maxLines="1"
-            android:gravity="bottom|right"
-            android:text="0"
-            android:textColor="@color/colorText"
-            android:textSize="36sp" />
-
-    </LinearLayout>
+    </fragment>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,14 +25,14 @@
         android:weightSum="7" >
 
         <fragment
-            class="com.dtalkachou.calculator.ScientificModeFragment"
+            class="com.dtalkachou.calculator.ScientificModeFragmentMode"
             android:id="@+id/scientific_mode"
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="match_parent" />
 
         <fragment
-            class="com.dtalkachou.calculator.BasicModeFragment"
+            class="com.dtalkachou.calculator.BasicModeFragmentMode"
             android:id="@+id/basic_mode"
             android:layout_width="0dp"
             android:layout_weight="4"

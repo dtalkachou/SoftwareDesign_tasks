@@ -5,7 +5,7 @@ import android.view.View;
 
 import androidx.fragment.app.Fragment;
 
-public class CalculatorBaseFragment extends Fragment implements View.OnClickListener {
+public class CalculatorModeBaseFragment extends Fragment implements View.OnClickListener {
     protected OnCalculatorButtonPressedListener listener;
 
     public interface OnCalculatorButtonPressedListener {
@@ -18,7 +18,8 @@ public class CalculatorBaseFragment extends Fragment implements View.OnClickList
         try {
             listener = (OnCalculatorButtonPressedListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement OnCalculatorButtonPressedListener");
+            throw new ClassCastException(context.toString() +
+                    " must implement OnCalculatorButtonPressedListener");
         }
     }
 
