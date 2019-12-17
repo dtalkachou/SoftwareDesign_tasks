@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -53,12 +54,16 @@ public class MainActivity extends AppCompatActivity
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putParcelable("calculator", calculator);
+        savedInstanceState.putString("clearBtnText",
+                ((Button) findViewById(R.id.clear)).getText().toString());
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         calculator = savedInstanceState.getParcelable("calculator");
+        ((Button) findViewById(R.id.clear)).setText(savedInstanceState.getString("clearBtnText"));
+        // Initialize calculator on the display.
         onCalculatorButtonPressed();
     }
 
