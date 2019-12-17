@@ -31,7 +31,22 @@ public class MainActivity extends AppCompatActivity implements CalculatorBaseFra
             initChangeMode();
         }
 
-        calculator = new CalculatorModel();
+        if (savedInstanceState == null) {
+            calculator = new CalculatorModel();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putParcelable("calculator", calculator);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        calculator = savedInstanceState.getParcelable("calculator");
+        onCalculatorButtonPressed();
     }
 
     private void initChangeMode() {

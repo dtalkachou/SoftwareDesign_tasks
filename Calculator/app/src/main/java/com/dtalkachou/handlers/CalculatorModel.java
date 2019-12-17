@@ -8,9 +8,31 @@ import org.mariuszgromada.math.mxparser.Expression;
 
 import java.lang.Double;
 
-public class CalculatorModel {
+public class CalculatorModel implements Parcelable {
     private StringBuilder inputNum, history;
     private State state;
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(inputNum.toString());
+        dest.writeString(history.toString());
+        dest.writeInt(state.ordinal());
+    }
+
+    public static final Parcelable.Creator<CalculatorModel> CREATOR = new Parcelable.Creator<CalculatorModel>() {
+        public CalculatorModel createFromParcel(Parcel in) {
+            return new CalculatorModel(in);
+        }
+
+        public CalculatorModel[] newArray(int size) {
+            return new CalculatorModel[size];
+        }
+    };
 
     public enum State {
         argInput,
@@ -29,10 +51,6 @@ public class CalculatorModel {
         return history.toString();
     }
 
-    public State getState() {
-        return state;
-    }
-
     private static String doubleNumProcess(Double num) {
         return String.valueOf(num).replaceAll(".0$", "").toLowerCase();
     }
@@ -41,6 +59,12 @@ public class CalculatorModel {
         inputNum = new StringBuilder("0");
         history = new StringBuilder();
         state = State.argInput;
+    }
+
+    private CalculatorModel(Parcel parcel) {
+        inputNum = new StringBuilder(parcel.readString());
+        history = new StringBuilder(parcel.readString());
+        state = State.values()[parcel.readInt()];
     }
 
     public boolean onNumPressed(String num) {
@@ -152,7 +176,7 @@ public class CalculatorModel {
 
     public void clear() {
         if (state == State.showResult) {
-            allClear();
+            clearHistory();
             state = State.argInput;
         }
         else if (state == State.argInput && history.length() != 0) {
