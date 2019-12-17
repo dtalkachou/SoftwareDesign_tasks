@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dtalkachou.handlers.CalculatorModel;
@@ -32,6 +35,17 @@ public class MainActivity extends AppCompatActivity
 
         if (savedInstanceState == null) {
             calculator = new CalculatorModel();
+        }
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                BuildConfig.FLAVOR.equals("demo")) {
+            findViewById(R.id.scientific_mode).setVisibility(View.GONE);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    7f
+            );
+            findViewById(R.id.basic_mode).setLayoutParams(params);
         }
     }
 
