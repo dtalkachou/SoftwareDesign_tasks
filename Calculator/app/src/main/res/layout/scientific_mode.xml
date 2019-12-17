@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:stretchColumns="*" >
+
+    <TableRow
+        android:layout_weight="1" >
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/left_bracket"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/right_bracket"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/factorial"
+            android:background="@drawable/func_button" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_weight="1" >
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/sqrt"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/power"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/natural_logarithm"
+            android:background="@drawable/func_button" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_weight="1" >
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/pi"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/eyler_num"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/random"
+            android:background="@drawable/func_button" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_weight="1" >
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/reverse"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/sin"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/cos"
+            android:background="@drawable/func_button" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_weight="1" >
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/exponenta"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/tan"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/cat"
+            android:background="@drawable/func_button" />
+
+    </TableRow>
+</TableLayout>

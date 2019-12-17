@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:stretchColumns="*" >
+
+    <TableRow
+        android:layout_weight="1" >
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/func_button"
+            android:textColor="@color/colorAccent"
+            android:text="@string/all_clear" />
+
+        <Button
+            android:id="@+id/signed"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/signed"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:id="@+id/percent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/percent"
+            android:background="@drawable/func_button" />
+
+        <Button
+            android:id="@+id/division"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/division"
+            android:background="@drawable/operation_button" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_weight="1" >
+        <Button
+            android:id="@+id/N7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/num_button"
+            android:text="@string/N7" />
+
+        <Button
+            android:id="@+id/N8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/num_button"
+            android:text="@string/N8" />
+
+        <Button
+            android:id="@+id/N9"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/num_button"
+            android:text="@string/N9" />
+
+        <Button
+            android:id="@+id/multiplication"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/multiplication"
+            android:background="@drawable/operation_button" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_weight="1" >
+        <Button
+            android:id="@+id/N4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/num_button"
+            android:text="@string/N4" />
+
+        <Button
+            android:id="@+id/N5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/num_button"
+            android:text="@string/N5" />
+
+        <Button
+            android:id="@+id/N6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/num_button"
+            android:text="@string/N6" />
+
+        <Button
+            android:id="@+id/subtraction"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/subtraction"
+            android:background="@drawable/operation_button" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_weight="1" >
+        <Button
+            android:id="@+id/N1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/num_button"
+            android:text="@string/N1" />
+
+        <Button
+            android:id="@+id/N2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/num_button"
+            android:text="@string/N2" />
+
+        <Button
+            android:id="@+id/N3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/num_button"
+            android:text="@string/N3" />
+
+        <Button
+            android:id="@+id/addition"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:text="@string/addition"
+            android:background="@drawable/operation_button" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/N0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:layout_span="2"
+            android:background="@drawable/num_button"
+            android:text="@string/N0" />
+
+        <Button
+            android:id="@+id/decimal_separator"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/num_button"
+            android:text="@string/decimal_separator" />
+
+        <Button
+            android:id="@+id/equals"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Button.Base"
+            android:background="@drawable/equal_button"
+            android:text="@string/equals" />
+
+    </TableRow>
+
+</TableLayout>

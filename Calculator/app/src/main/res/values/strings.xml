@@ -16,9 +16,27 @@
     <string name="multiplication">×</string>
     <string name="division">÷</string>
     <string name="equals">=</string>
-    <string name="point">.</string>
+    <string name="decimal_separator">.</string>
     <string name="clear">C</string>
     <string name="all_clear">AC</string>
     <string name="signed">+/–</string>
     <string name="percent">%</string>
+
+    <string name="mode">MODE</string>
+
+    <string name="left_bracket">(</string>
+    <string name="right_bracket">)</string>
+    <string name="reverse">1/x</string>
+    <string name="factorial">x!</string>
+    <string name="natural_logarithm">ln</string>
+    <string name="exponenta">exp</string>
+    <string name="power">pow</string>
+    <string name="sqrt">√</string>
+    <string name="pi">PI</string>
+    <string name="eyler_num">e</string>
+    <string name="random">Rand</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="cat">cat</string>
 </resources>
