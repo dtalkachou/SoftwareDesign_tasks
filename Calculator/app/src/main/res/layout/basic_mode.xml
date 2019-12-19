@@ -7,14 +7,30 @@
 
     <TableRow
         android:layout_weight="1" >
-        <Button
-            android:id="@+id/clear"
+
+        <FrameLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            style="@style/Button.Base"
-            android:background="@drawable/func_button"
-            android:textColor="@color/colorAccent"
-            android:text="@string/all_clear" />
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Button.Base"
+                android:background="@drawable/func_button"
+                android:textColor="@color/colorAccent"
+                android:text="@string/clear"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/all_clear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Button.Base"
+                android:background="@drawable/func_button"
+                android:textColor="@color/colorAccent"
+                android:text="@string/all_clear" />
+        </FrameLayout>
 
         <Button
             android:id="@+id/signed"

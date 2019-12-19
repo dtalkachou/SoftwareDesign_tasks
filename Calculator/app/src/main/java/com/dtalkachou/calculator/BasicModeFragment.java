@@ -6,20 +6,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class BasicModeFragmentMode extends CalculatorModeBaseFragment {
-    private Button cancelBtn;
+import com.dtalkachou.handlers.ClearState;
+
+public class BasicModeFragment extends ModeBaseFragment {
+    private Button clearButton, allClearButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.basic_mode, container, false);
-        cancelBtn = view.findViewById(R.id.clear);
 
-        initViews(view);
+        clearButton = view.findViewById(R.id.clear);
+        allClearButton = view.findViewById(R.id.all_clear);
+
+        setButtonsOnClickListener(view);
         return view;
     }
 
-    private void initViews(View view) {
+    @Override
+    public void onResume() {
+        super.onResume();
+        setClearButton();
+    }
+
+    private void setButtonsOnClickListener(View view) {
         final int[] viewIds = new int[] {
                 R.id.N0,
                 R.id.N1,
@@ -38,12 +48,26 @@ public class BasicModeFragmentMode extends CalculatorModeBaseFragment {
                 R.id.division,
                 R.id.equals,
                 R.id.decimal_separator,
+                R.id.all_clear,
                 R.id.clear,
                 R.id.signed
         };
 
         for (int id: viewIds) {
             view.findViewById(id).setOnClickListener(this);
+        }
+    }
+
+    private void setClearButton() {
+        ClearState clearState = listener.getCalculator().getClearState();
+        if (clearState == ClearState.CLEAR && allClearButton.getVisibility() == View.VISIBLE) {
+            clearButton.setVisibility(View.VISIBLE);
+            allClearButton.setVisibility(View.INVISIBLE);
+        }
+        else if (clearState == ClearState.ALL_CLEAR &&
+                clearButton.getVisibility() == View.VISIBLE)  {
+            allClearButton.setVisibility(View.VISIBLE);
+            clearButton.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -60,49 +84,32 @@ public class BasicModeFragmentMode extends CalculatorModeBaseFragment {
             case R.id.N7:
             case R.id.N8:
             case R.id.N9:
-                if (listener instanceof MainActivity) {
-                    boolean pressed = ((MainActivity) listener).getCalculator()
-                            .onNumPressed(((Button) view).getText().toString());
-                    if (pressed) {
-                        cancelBtn.setText(R.string.clear);
-                    }
-                }
+                listener.getCalculator().onNumPressed(((Button) view).getText().toString());
                 break;
             case R.id.addition:
             case R.id.subtraction:
             case R.id.multiplication:
             case R.id.division:
             case R.id.equals:
-                if (listener instanceof MainActivity) {
-                    ((MainActivity) listener).getCalculator().onOperationPressed(view.getId());
-                }
+                listener.getCalculator().onOperationPressed(view.getId());
                 break;
             case R.id.decimal_separator:
-                if (listener instanceof MainActivity) {
-                    ((MainActivity) listener).getCalculator().onDecimalSeparatorPressed();
-                }
+                listener.getCalculator().onDecimalSeparatorPressed();
                 break;
             case R.id.clear:
-                if (listener instanceof MainActivity) {
-                    if (cancelBtn.getText().equals(getResources().getText(R.string.clear))) {
-                        ((MainActivity) listener).getCalculator().clear();
-                        cancelBtn.setText(R.string.all_clear);
-                    } else {
-                        ((MainActivity) listener).getCalculator().allClear();
-                    }
-                }
+                listener.getCalculator().onClearPressed();
+                break;
+            case R.id.all_clear:
+                listener.getCalculator().onAllClearPressed();
                 break;
             case R.id.signed:
-                if (listener instanceof MainActivity) {
-                    ((MainActivity) listener).getCalculator().onSignPressed();
-                }
+                listener.getCalculator().onSignPressed();
                 break;
             case R.id.percent:
-                if (listener instanceof MainActivity) {
-                    ((MainActivity) listener).getCalculator().onPercentPressed();
-                }
+                listener.getCalculator().onPercentPressed();
                 break;
         }
+        setClearButton();
 
         super.onClick(view);
     }

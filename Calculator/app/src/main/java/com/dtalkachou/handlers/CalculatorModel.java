@@ -7,43 +7,22 @@ import com.dtalkachou.calculator.R;
 import org.mariuszgromada.math.mxparser.Expression;
 
 import java.lang.Double;
+import java.util.Random;
 
 public class CalculatorModel implements Parcelable {
-    private int maxInputLength = 10;
-    private StringBuilder inputNum, history;
-    private State state;
-
-    public void setMaxInputLength(int maxInputLength) {
-        this.maxInputLength = maxInputLength;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(inputNum.toString());
-        dest.writeString(history.toString());
-        dest.writeInt(state.ordinal());
-    }
-
-    public static final Parcelable.Creator<CalculatorModel> CREATOR = new
-            Parcelable.Creator<CalculatorModel>() {
-        public CalculatorModel createFromParcel(Parcel in) {
-            return new CalculatorModel(in);
-        }
-
-        public CalculatorModel[] newArray(int size) {
-            return new CalculatorModel[size];
-        }
-    };
-
-    public enum State {
+    private enum State {
         argInput,
         operationSelected,
-        showResult
+        showResult,
+        functionSelected
+    }
+
+    private StringBuilder inputNum, history;
+    private State state;
+    private ClearState clearState;
+
+    public ClearState getClearState() {
+        return clearState;
     }
 
     public String getInputNum() {
@@ -57,6 +36,30 @@ public class CalculatorModel implements Parcelable {
         return history.toString();
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(inputNum.toString());
+        dest.writeString(history.toString());
+        dest.writeInt(clearState.ordinal());
+        dest.writeInt(state.ordinal());
+    }
+
+    public static final Parcelable.Creator<CalculatorModel> CREATOR =
+            new Parcelable.Creator<CalculatorModel>() {
+        public CalculatorModel createFromParcel(Parcel in) {
+            return new CalculatorModel(in);
+        }
+
+        public CalculatorModel[] newArray(int size) {
+            return new CalculatorModel[size];
+        }
+    };
+
     private static String doubleNumProcess(Double num) {
         return String.valueOf(num).replaceAll(".0$", "").toLowerCase();
     }
@@ -64,22 +67,20 @@ public class CalculatorModel implements Parcelable {
     public CalculatorModel() {
         inputNum = new StringBuilder("0");
         history = new StringBuilder();
+        clearState = ClearState.ALL_CLEAR;
         state = State.argInput;
     }
 
     private CalculatorModel(Parcel parcel) {
         inputNum = new StringBuilder(parcel.readString());
         history = new StringBuilder(parcel.readString());
+        clearState = ClearState.values()[parcel.readInt()];
         state = State.values()[parcel.readInt()];
     }
 
     public boolean onNumPressed(String num) {
         if (state == State.showResult) {
-            clear();
-        }
-
-        if (inputNum.length() == maxInputLength) {
-            return false;
+            onClearPressed();
         }
 
         state = State.argInput;
@@ -87,21 +88,16 @@ public class CalculatorModel implements Parcelable {
             if (num.equals("0")) {
                 return false;
             }
-            else {
-                inputNum.deleteCharAt(inputNum.length() - 1);
-            }
+            inputNum.deleteCharAt(inputNum.length() - 1);
         }
         inputNum.append(num);
+        clearState = ClearState.CLEAR;
         return true;
     }
 
     public void onDecimalSeparatorPressed() {
         if (state == State.showResult) {
             clearHistory();
-        }
-
-        if (inputNum.length() == maxInputLength) {
-            return;
         }
 
         state = State.argInput;
@@ -130,10 +126,6 @@ public class CalculatorModel implements Parcelable {
     public void onPercentPressed() {
         if (state == State.showResult) {
             clearHistory();
-        }
-
-        if (inputNum.length() == maxInputLength) {
-            return;
         }
 
         state = State.argInput;
@@ -188,6 +180,27 @@ public class CalculatorModel implements Parcelable {
         }
     }
 
+    public void onClearPressed() {
+        if (state == State.showResult) {
+            clearHistory();
+            state = State.argInput;
+        }
+        else if (state == State.argInput && history.length() != 0) {
+            state = State.operationSelected;
+        }
+        resetInputNum();
+        clearState = ClearState.ALL_CLEAR;
+    }
+
+    public void onAllClearPressed() {
+        onClearPressed();
+        clearHistory();
+    }
+
+    public void onFunctionPressed(int functionId) {
+
+    }
+
     private void resetInputNum() {
         inputNum.setLength(0);
         inputNum.append("0");
@@ -197,25 +210,9 @@ public class CalculatorModel implements Parcelable {
         history.setLength(0);
     }
 
-    public void clear() {
-        if (state == State.showResult) {
-            clearHistory();
-            state = State.argInput;
-        }
-        else if (state == State.argInput && history.length() != 0) {
-            state = State.operationSelected;
-        }
-        resetInputNum();
-    }
-
-    public void allClear() {
-        clear();
-        clearHistory();
-    }
-
-    private double calculate() {
-        String expr = history.substring(0, history.length() - 1).replace('–', '-')
-                .replace('×', '*').replace('÷', '/');
+    public double calculate() {
+        String expr = history.substring(0, history.length() - 1).replace('–', '-').
+                replace('×', '*').replace('÷', '/');
         return new Expression(expr).calculate();
     }
 }

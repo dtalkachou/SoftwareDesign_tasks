@@ -1,5 +1,6 @@
 package com.dtalkachou.calculator;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,19 +12,36 @@ import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
-public class CalculatorDisplayFragment extends Fragment {
+public class DisplayFragment extends Fragment {
     private HorizontalScrollView horizontalScrollView;
+    private OnChangeModePressedListener listener;
+
+    public interface OnChangeModePressedListener {
+        void onChangeModePressed();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.calculator_display, container, false);
 
-        initChangeMode(view);
         initHistoryStr(view);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            initChangeMode(view);
+        }
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            listener = (OnChangeModePressedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() +
+                    " must implement OnChangeModePressedListener");
+        }
     }
 
     private void initHistoryStr(View view) {
@@ -47,10 +65,6 @@ public class CalculatorDisplayFragment extends Fragment {
     }
 
     private void initChangeMode(View view) {
-        if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_PORTRAIT) {
-            return;
-        }
-
         if (BuildConfig.FLAVOR.equals("demo")) {
             view.findViewById(R.id.change_mode).setVisibility(View.GONE);
         }
@@ -58,15 +72,7 @@ public class CalculatorDisplayFragment extends Fragment {
             view.findViewById(R.id.change_mode).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    FragmentTransaction fragmentTransaction = getActivity()
-                            .getSupportFragmentManager().beginTransaction();
-                    if (getActivity().getSupportFragmentManager().findFragmentById(R.id.mode)
-                            instanceof BasicModeFragmentMode) {
-                        fragmentTransaction.replace(R.id.mode, new ScientificModeFragmentMode());
-                    } else {
-                        fragmentTransaction.replace(R.id.mode, new BasicModeFragmentMode());
-                    }
-                    fragmentTransaction.commit();
+                    listener.onChangeModePressed();
                 }
             });
         }

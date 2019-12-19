@@ -9,7 +9,7 @@
     tools:context=".MainActivity" >
 
     <fragment
-        class="com.dtalkachou.calculator.CalculatorDisplayFragment"
+        class="com.dtalkachou.calculator.DisplayFragment"
         android:id="@+id/calculator_display"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -25,14 +25,14 @@
         android:weightSum="7" >
 
         <fragment
-            class="com.dtalkachou.calculator.ScientificModeFragmentMode"
+            class="com.dtalkachou.calculator.ScientificModeFragment"
             android:id="@+id/scientific_mode"
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="match_parent" />
 
         <fragment
-            class="com.dtalkachou.calculator.BasicModeFragmentMode"
+            class="com.dtalkachou.calculator.BasicModeFragment"
             android:id="@+id/basic_mode"
             android:layout_width="0dp"
             android:layout_weight="4"
