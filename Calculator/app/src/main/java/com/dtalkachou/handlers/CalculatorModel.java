@@ -3,13 +3,9 @@ package com.dtalkachou.handlers;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.dtalkachou.res.ButtonConsts;
-
 import org.mariuszgromada.math.mxparser.Expression;
 
 import java.lang.Double;
-import java.util.Random;
-import java.util.Stack;
 
 public class CalculatorModel implements Parcelable {
     public final static String ADDITION = "+";
@@ -205,6 +201,7 @@ public class CalculatorModel implements Parcelable {
                 if (notClosedBracket == 0) {
                     return;
                 }
+                inputToHistory();
                 notClosedBracket--;
                 break;
         }
