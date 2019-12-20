@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dtalkachou.res.ButtonConsts;
+
 public class ScientificModeFragment extends ModeBaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +42,17 @@ public class ScientificModeFragment extends ModeBaseFragment {
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.left_bracket:
+                listener.onButtonPressed(ButtonConsts.function.LEFT_BRACKET);
+                break;
+            case R.id.right_bracket:
+                listener.onButtonPressed(ButtonConsts.function.RIGHT_BRACKET);
+                break;
+//            case R.id.left_bracket:
+//                listener.onButtonPressed(ButtonConsts.function.LEFT_BRACKET);
+//                break;
+        }
         super.onClick(view);
     }
 }

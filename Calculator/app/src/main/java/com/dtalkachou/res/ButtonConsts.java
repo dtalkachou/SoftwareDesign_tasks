@@ -29,4 +29,14 @@ public final class ButtonConsts {
         public final static String CLEAR = "BasicMode.CLEAR";
         public final static String ALL_CLEAR = "BasicMode.ALL_CLEAR";
     }
+
+    public final class function {
+        public final static String LEFT_BRACKET = "ScientificMode.LEFT_BRACKET";
+        public final static String RIGHT_BRACKET = "ScientificMode.RIGHT_BRACKET";
+        public final static String SQRT = "ScientificMode.SIN";
+        public final static String SIN = "ScientificMode.SIN";
+        public final static String COS = "ScientificMode.SIN";
+        public final static String TAN = "ScientificMode.SIN";
+        public final static String CAT = "ScientificMode.SIN";
+    }
 }

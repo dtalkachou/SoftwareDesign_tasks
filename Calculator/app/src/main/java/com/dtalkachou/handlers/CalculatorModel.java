@@ -3,13 +3,25 @@ package com.dtalkachou.handlers;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.dtalkachou.res.ButtonConsts;
+
 import org.mariuszgromada.math.mxparser.Expression;
 
 import java.lang.Double;
 import java.util.Random;
+import java.util.Stack;
 
 public class CalculatorModel implements Parcelable {
+    public final static String ADDITION = "+";
+    public final static String SUBTRACTION = "-";
+    public final static String MULTIPLICATION = "×";
+    public final static String DIVISION = "÷";
+    public final static String EQUALS = "=";
+    public static final String LEFT_BRACKET = "(";
+    public static final String RIGHT_BRACKET = ")";
+
     private StringBuilder inputNum, history;
+    private int notClosedBracket;
     private State state;
     private ClearState clearState;
 
@@ -37,6 +49,7 @@ public class CalculatorModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(inputNum.toString());
         dest.writeString(history.toString());
+        dest.writeInt(notClosedBracket);
         dest.writeInt(clearState.ordinal());
         dest.writeInt(state.ordinal());
     }
@@ -59,6 +72,7 @@ public class CalculatorModel implements Parcelable {
     public CalculatorModel() {
         inputNum = new StringBuilder("0");
         history = new StringBuilder();
+        notClosedBracket = 0;
         clearState = ClearState.ALL_CLEAR;
         state = State.ARGUMENT_INPUT;
     }
@@ -66,13 +80,17 @@ public class CalculatorModel implements Parcelable {
     private CalculatorModel(Parcel parcel) {
         inputNum = new StringBuilder(parcel.readString());
         history = new StringBuilder(parcel.readString());
+        notClosedBracket = parcel.readInt();
         clearState = ClearState.values()[parcel.readInt()];
         state = State.values()[parcel.readInt()];
     }
 
     public void addDigit(int num) {
         if (state == State.SHOW_RESULT) {
-            clear();
+            allClear();
+        }
+        else if (state == State.OPERATION_SELECTED) {
+            inputNum.setLength(0);
         }
 
         state = State.ARGUMENT_INPUT;
@@ -122,45 +140,42 @@ public class CalculatorModel implements Parcelable {
         state = State.ARGUMENT_INPUT;
         double num = Double.parseDouble(inputNum.toString());
         inputNum.setLength(0);
-        inputNum.append(doubleNumProcess(num / 100));
+        inputNum.append(num / 100);
     }
 
-    public void setOperation(char operationSymbol) {
+    public void setOperation(String operation) {
         if (state == State.OPERATION_SELECTED) {
             history.deleteCharAt(history.length() - 1);
+            return;
+        }
+        else if (state == State.SHOW_RESULT && !continueResultInput()) {
+            return;
+        }
+
+        state = State.OPERATION_SELECTED;
+        if (history.length() != 0 && inputNum.toString().startsWith("-")) {
+            history.append('(');
+            inputToHistory();
+            history.append(')');
         }
         else {
-            if (state == State.SHOW_RESULT && !continueResultInput()) {
-                return;
-            }
-
-            double num = Double.parseDouble(inputNum.toString());
-            if (history.length() != 0 && inputNum.toString().startsWith("-")) {
-                history.append('(').append(doubleNumProcess(num)).append(')');
-            }
-            else {
-                history.append(doubleNumProcess(num));
-            }
+            inputToHistory();
         }
-        history.append(operationSymbol);
+        history.append(operation);
 
-        if (operationSymbol == '=') {
-            inputNum.setLength(0);
-            inputNum.append(doubleNumProcess(calculate()));
+        if (operation.equals(EQUALS)) {
+            while (notClosedBracket > 0) {
+                history.insert(history.length() - 1, RIGHT_BRACKET);
+                notClosedBracket--;
+            }
+
             state = State.SHOW_RESULT;
-        }
-        else {
-            resetInputNum();
-            state = State.OPERATION_SELECTED;
+            calculate();
         }
     }
 
     public void clear() {
-        if (state == State.SHOW_RESULT) {
-            clearHistory();
-            state = State.ARGUMENT_INPUT;
-        }
-        else if (state == State.ARGUMENT_INPUT && history.length() != 0) {
+        if (state == State.ARGUMENT_INPUT && history.length() != 0) {
             // If true, then always last character in history is an operation
             state = State.OPERATION_SELECTED;
         }
@@ -170,11 +185,30 @@ public class CalculatorModel implements Parcelable {
 
     public void allClear() {
         clear();
-        clearHistory();
+        history.setLength(0);
+        notClosedBracket = 0;
     }
 
-    public void setFunction(int functionId) {
+    public void setFunction(String function) {
+        if (state == State.SHOW_RESULT) {
+            allClear();
+        }
 
+        switch (function) {
+            case LEFT_BRACKET:
+                notClosedBracket++;
+                if (state != State.ARGUMENT_INPUT) {
+                    resetInputNum();
+                }
+                break;
+            case RIGHT_BRACKET:
+                if (notClosedBracket == 0) {
+                    return;
+                }
+                notClosedBracket--;
+                break;
+        }
+        history.append(function);
     }
 
     private void resetInputNum() {
@@ -182,25 +216,29 @@ public class CalculatorModel implements Parcelable {
         inputNum.append("0");
     }
 
-    private void clearHistory() {
-        history.setLength(0);
+    private void inputToHistory() {
+        String num = doubleNumProcess(Double.valueOf(inputNum.toString()));
+        inputNum.setLength(0);
+        inputNum.append(num);
+        history.append(num);
     }
 
     private boolean continueResultInput() {
         if (inputNum.toString().equals("nan")) {
             return false;
         }
-        clearHistory();
+        history.setLength(0);
         return true;
     }
 
-    private double calculate() {
-        String expr = history.substring(0, history.length() - 1).replace('–', '-').
-                replace('×', '*').replace('÷', '/');
+    private void calculate() {
+        String expr = history.substring(0, history.length() - 1).
+                replaceAll(MULTIPLICATION, "*").replaceAll(DIVISION, "/");
         double result = new Expression(expr).calculate();
         if (Double.isNaN(result)) {
             clearState = ClearState.ALL_CLEAR;
         }
-        return result;
+        inputNum.setLength(0);
+        inputNum.append(doubleNumProcess(result));
     }
 }

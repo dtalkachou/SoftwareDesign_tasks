@@ -107,19 +107,19 @@ public class MainActivity extends AppCompatActivity implements
                 calculator.addDigit(9);
                 break;
             case ButtonConsts.operation.ADDITION:
-                calculator.setOperation('+');
+                calculator.setOperation(CalculatorModel.ADDITION);
                 break;
             case ButtonConsts.operation.SUBTRACTION:
-                calculator.setOperation('–');
+                calculator.setOperation(CalculatorModel.SUBTRACTION);
                 break;
             case ButtonConsts.operation.MULTIPLICATION:
-                calculator.setOperation('×');
+                calculator.setOperation(CalculatorModel.MULTIPLICATION);
                 break;
             case ButtonConsts.operation.DIVISION:
-                calculator.setOperation('÷');
+                calculator.setOperation(CalculatorModel.DIVISION);
                 break;
             case ButtonConsts.operation.EQUALS:
-                calculator.setOperation('=');
+                calculator.setOperation(CalculatorModel.EQUALS);
                 break;
             case ButtonConsts.other.DECIMAL_SEPARATOR:
                 calculator.setDecimalSeparator();
@@ -136,7 +136,12 @@ public class MainActivity extends AppCompatActivity implements
             case ButtonConsts.other.ALL_CLEAR:
                 calculator.allClear();
                 break;
-
+            case ButtonConsts.function.LEFT_BRACKET:
+                calculator.setFunction(CalculatorModel.LEFT_BRACKET);
+                break;
+            case ButtonConsts.function.RIGHT_BRACKET:
+                calculator.setFunction(CalculatorModel.RIGHT_BRACKET);
+                break;
         }
 
         loadState();
