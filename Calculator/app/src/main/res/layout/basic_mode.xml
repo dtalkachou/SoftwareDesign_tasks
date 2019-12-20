@@ -61,28 +61,28 @@
     <TableRow
         android:layout_weight="1" >
         <Button
-            android:id="@+id/N7"
+            android:id="@+id/digit_seven"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             style="@style/Button.Base"
             android:background="@drawable/num_button"
-            android:text="@string/N7" />
+            android:text="@string/digit_seven" />
 
         <Button
-            android:id="@+id/N8"
+            android:id="@+id/digit_eight"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             style="@style/Button.Base"
             android:background="@drawable/num_button"
-            android:text="@string/N8" />
+            android:text="@string/digit_eight" />
 
         <Button
-            android:id="@+id/N9"
+            android:id="@+id/digit_nine"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             style="@style/Button.Base"
             android:background="@drawable/num_button"
-            android:text="@string/N9" />
+            android:text="@string/digit_nine" />
 
         <Button
             android:id="@+id/multiplication"
@@ -97,28 +97,28 @@
     <TableRow
         android:layout_weight="1" >
         <Button
-            android:id="@+id/N4"
+            android:id="@+id/digit_four"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             style="@style/Button.Base"
             android:background="@drawable/num_button"
-            android:text="@string/N4" />
+            android:text="@string/digit_four" />
 
         <Button
-            android:id="@+id/N5"
+            android:id="@+id/digit_five"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             style="@style/Button.Base"
             android:background="@drawable/num_button"
-            android:text="@string/N5" />
+            android:text="@string/digit_five" />
 
         <Button
-            android:id="@+id/N6"
+            android:id="@+id/digit_six"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             style="@style/Button.Base"
             android:background="@drawable/num_button"
-            android:text="@string/N6" />
+            android:text="@string/digit_six" />
 
         <Button
             android:id="@+id/subtraction"
@@ -133,28 +133,28 @@
     <TableRow
         android:layout_weight="1" >
         <Button
-            android:id="@+id/N1"
+            android:id="@+id/digit_one"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             style="@style/Button.Base"
             android:background="@drawable/num_button"
-            android:text="@string/N1" />
+            android:text="@string/digit_one" />
 
         <Button
-            android:id="@+id/N2"
+            android:id="@+id/digit_two"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             style="@style/Button.Base"
             android:background="@drawable/num_button"
-            android:text="@string/N2" />
+            android:text="@string/digit_two" />
 
         <Button
-            android:id="@+id/N3"
+            android:id="@+id/digit_three"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             style="@style/Button.Base"
             android:background="@drawable/num_button"
-            android:text="@string/N3" />
+            android:text="@string/digit_three" />
 
         <Button
             android:id="@+id/addition"
@@ -170,13 +170,13 @@
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/N0"
+            android:id="@+id/digit_zero"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             style="@style/Button.Base"
             android:layout_span="2"
             android:background="@drawable/num_button"
-            android:text="@string/N0" />
+            android:text="@string/digit_zero" />
 
         <Button
             android:id="@+id/decimal_separator"

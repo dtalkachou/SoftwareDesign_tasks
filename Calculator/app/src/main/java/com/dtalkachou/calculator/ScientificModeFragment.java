@@ -40,7 +40,6 @@ public class ScientificModeFragment extends ModeBaseFragment {
 
     @Override
     public void onClick(View view) {
-        listener.getCalculator().onFunctionPressed(view.getId());
         super.onClick(view);
     }
 }

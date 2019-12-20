@@ -6,18 +6,20 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.res.Configuration;
-import android.hardware.display.DisplayManager;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.dtalkachou.handlers.CalculatorModel;
+
+import com.dtalkachou.res.ButtonConsts;
 
 public class MainActivity extends AppCompatActivity implements
         ModeBaseFragment.OnButtonPressedListener,
         DisplayFragment.OnChangeModePressedListener {
     private TextView inputNum, historyStr;
-    private CalculatorModel calculator;
+
+    // fixme: change to private
+    public CalculatorModel calculator;
 
     public void setCalculator(CalculatorModel calculator) {
         this.calculator = calculator;
@@ -63,18 +65,81 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onResume() {
         super.onResume();
-        onButtonPressed();
+        loadState();
     }
 
-    @Override
-    public void onButtonPressed() {
+    private void loadState() {
         inputNum.setText(calculator.getInputNum());
         historyStr.setText(calculator.getHistory());
     }
 
     @Override
-    public CalculatorModel getCalculator() {
-        return calculator;
+    public void onButtonPressed(String button) {
+        switch (button) {
+            case ButtonConsts.digit.ZERO:
+                calculator.addDigit(0);
+                break;
+            case ButtonConsts.digit.ONE:
+                calculator.addDigit(1);
+                break;
+            case ButtonConsts.digit.TWO:
+                calculator.addDigit(2);
+                break;
+            case ButtonConsts.digit.THREE:
+                calculator.addDigit(3);
+                break;
+            case ButtonConsts.digit.FOUR:
+                calculator.addDigit(4);
+                break;
+            case ButtonConsts.digit.FIVE:
+                calculator.addDigit(5);
+                break;
+            case ButtonConsts.digit.SIX:
+                calculator.addDigit(6);
+                break;
+            case ButtonConsts.digit.SEVEN:
+                calculator.addDigit(7);
+                break;
+            case ButtonConsts.digit.EIGHT:
+                calculator.addDigit(8);
+                break;
+            case ButtonConsts.digit.NINE:
+                calculator.addDigit(9);
+                break;
+            case ButtonConsts.operation.ADDITION:
+                calculator.setOperation('+');
+                break;
+            case ButtonConsts.operation.SUBTRACTION:
+                calculator.setOperation('–');
+                break;
+            case ButtonConsts.operation.MULTIPLICATION:
+                calculator.setOperation('×');
+                break;
+            case ButtonConsts.operation.DIVISION:
+                calculator.setOperation('÷');
+                break;
+            case ButtonConsts.operation.EQUALS:
+                calculator.setOperation('=');
+                break;
+            case ButtonConsts.other.DECIMAL_SEPARATOR:
+                calculator.setDecimalSeparator();
+                break;
+            case ButtonConsts.other.PERCENT:
+                calculator.makePercent();
+                break;
+            case ButtonConsts.other.SIGNED:
+                calculator.changeSign();
+                break;
+            case ButtonConsts.other.CLEAR:
+                calculator.clear();
+                break;
+            case ButtonConsts.other.ALL_CLEAR:
+                calculator.allClear();
+                break;
+
+        }
+
+        loadState();
     }
 
     @Override

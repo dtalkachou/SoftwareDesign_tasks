@@ -11,8 +11,7 @@ public class ModeBaseFragment extends Fragment implements View.OnClickListener {
     protected OnButtonPressedListener listener;
 
     public interface OnButtonPressedListener {
-        void onButtonPressed();
-        CalculatorModel getCalculator();
+        void onButtonPressed(String button);
     }
 
     @Override
@@ -28,6 +27,5 @@ public class ModeBaseFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        listener.onButtonPressed();
     }
 }
