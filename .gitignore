@@ -31,3 +31,6 @@ captures/
 # IntelliJ
 *.iml
 .idea/
+
+# Google Sevices
+google-services.json
