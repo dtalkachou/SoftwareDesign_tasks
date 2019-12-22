@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Battleship</string>
+    <string name="tiles_col1_header">1</string>
+    <string name="tiles_col2_header">2</string>
+    <string name="tiles_col3_header">3</string>
+    <string name="tiles_col4_header">4</string>
+    <string name="tiles_col5_header">5</string>
+    <string name="tiles_col6_header">6</string>
+    <string name="tiles_col7_header">7</string>
+    <string name="tiles_col8_header">8</string>
+    <string name="tiles_col9_header">9</string>
+    <string name="tiles_col10_header">10</string>
+    <string name="tiles_rowA_header">A</string>
+    <string name="tiles_rowB_header">B</string>
+    <string name="tiles_rowC_header">C</string>
+    <string name="tiles_rowD_header">D</string>
+    <string name="tiles_rowE_header">E</string>
+    <string name="tiles_rowF_header">F</string>
+    <string name="tiles_rowG_header">G</string>
+    <string name="tiles_rowH_header">H</string>
+    <string name="tiles_rowI_header">I</string>
+    <string name="tiles_rowJ_header">J</string>
+</resources>

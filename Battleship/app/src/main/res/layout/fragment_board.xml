@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+    <TableLayout
+            android:id="@+id/board"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="24dp"
+            android:stretchColumns="*">
+
+        <TableRow
+                android:layout_weight="1">
+
+            <TextView
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_col1_header" />
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_col2_header" />
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_col3_header" />
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_col4_header" />
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_col5_header" />
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_col6_header" />
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_col7_header" />
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_col8_header" />
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_col9_header" />
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_col10_header" />
+        </TableRow>
+
+        <TableRow
+            android:layout_weight="1">
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_rowA_header" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+        </TableRow>
+
+        <TableRow
+                android:layout_weight="1">
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_rowB_header" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+        </TableRow>
+
+        <TableRow
+                android:layout_weight="1">
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_rowC_header" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+        </TableRow>
+
+        <TableRow
+                android:layout_weight="1">
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_rowD_header" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+        </TableRow>
+
+        <TableRow
+                android:layout_weight="1">
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_rowE_header" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+        </TableRow>
+
+        <TableRow
+                android:layout_weight="1">
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_rowF_header" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+        </TableRow>
+
+        <TableRow
+                android:layout_weight="1">
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_rowG_header" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+        </TableRow>
+
+        <TableRow
+                android:layout_weight="1">
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_rowH_header" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+        </TableRow>
+
+        <TableRow
+                android:layout_weight="1">
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_rowI_header" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+        </TableRow>
+
+        <TableRow
+                android:layout_weight="1">
+
+            <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/BoardHeaderTextView"
+                    android:text="@string/tiles_rowJ_header" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+
+            <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin=".2dp"
+                    style="@style/TileButton" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
