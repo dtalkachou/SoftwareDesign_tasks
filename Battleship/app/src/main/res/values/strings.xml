@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Battleship</string>
+
+    <string name="sign_in">Sign in</string>
+    <string name="sign_out">Sign out</string>
+    <string name="anonymous">anonymous</string>
+
     <string name="tiles_col1_header">1</string>
     <string name="tiles_col2_header">2</string>
     <string name="tiles_col3_header">3</string>
@@ -20,4 +25,7 @@
     <string name="tiles_rowH_header">H</string>
     <string name="tiles_rowI_header">I</string>
     <string name="tiles_rowJ_header">J</string>
+
+    <string name="facebook_app_id">2660225657388546</string>
+    <string name="fb_login_protocol_scheme">fb2660225657388546</string>
 </resources>
