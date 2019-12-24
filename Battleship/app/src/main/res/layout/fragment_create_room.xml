@@ -1,14 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         tools:context=".CreateRoomFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/create_room_text" />
 
-</FrameLayout>
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--                xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--                android:id="@+id/password_input_layout"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"-->
+<!--                android:layout_width="200dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@null"-->
+<!--                android:labelFor="@+id/password_edit_text"-->
+<!--                android:focusableInTouchMode="true"-->
+<!--                app:boxStrokeColor="@color/colorBlue"-->
+<!--                app:hintTextColor="@color/colorBlue"-->
+<!--                android:hint="@string/password_text"-->
+<!--                app:hintEnabled="true"-->
+<!--                android:maxLength="4"-->
+<!--                app:counterEnabled="true"-->
+<!--                app:counterMaxLength="4">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/password_edit_text"-->
+<!--                    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:cursorVisible="false"-->
+<!--                    android:inputType="number"-->
+<!--                    android:hint="@string/password_hint_text" />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <com.google.android.material.checkbox.MaterialCheckBox-->
+<!--                xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--                style="@style/CheckBox"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:useMaterialThemeColors="false"-->
+<!--                android:hint="@string/password_text" />-->
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/create_room_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/create_room_text"
+                android:backgroundTint="@color/colorAccent"
+                android:textColor="@color/colorLight"
+                app:rippleColor="#C482DF"
+                />
+    </LinearLayout>
+
+</LinearLayout>

@@ -2,6 +2,8 @@ package com.dtalkachou.battleship;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.net.Uri;
@@ -19,26 +21,32 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class MainActivity extends AppCompatActivity implements
         SignInFragment.OnSignInListener,
         ProfileFragment.OnSignOutListener,
-        RoomListFragment.OnFragmentInteractionListener,
-        CreateRoomFragment.OnFragmentInteractionListener{
+        CreateRoomFragment.OnCreatedRoomListener,
+        RoomListFragment.OnFragmentInteractionListener{
 
     private ProfileFragment mProfileFragment;
+    private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
@@ -54,14 +62,10 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void setEnabledRoomFragments(boolean enabled) {
-        setEnabledViewGroup((ViewGroup) findViewById(R.id.room_list_fragment), enabled);
-        setEnabledViewGroup((ViewGroup) findViewById(R.id.create_room_fragment), enabled);
-    }
-
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
-            mProfileFragment = ProfileFragment.newInstance(currentUser.getPhotoUrl(),
+            Uri profilePictureUri = Uri.parse(currentUser.getPhotoUrl() + "?height=125");
+            mProfileFragment = ProfileFragment.newInstance(profilePictureUri,
                     currentUser.getDisplayName());
 
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().
@@ -72,10 +76,13 @@ public class MainActivity extends AppCompatActivity implements
             findViewById(R.id.sign_in_fragment).setVisibility(View.GONE);
             findViewById(R.id.profile_frame).setVisibility(View.VISIBLE);
 
-            setEnabledRoomFragments(true);
+            setEnabledViewGroup((ViewGroup) findViewById(R.id.room_list_fragment), true);
+            setEnabledViewGroup((ViewGroup) findViewById(R.id.create_room_fragment), true);
         }
         else {
-            setEnabledRoomFragments(false);
+
+            setEnabledViewGroup((ViewGroup) findViewById(R.id.room_list_fragment), false);
+            setEnabledViewGroup((ViewGroup) findViewById(R.id.create_room_fragment), false);
 
             findViewById(R.id.profile_frame).setVisibility(View.GONE);
 
@@ -119,5 +126,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+    }
+
+    @Override
+    public void onCreatedRoom(String value) {
     }
 }

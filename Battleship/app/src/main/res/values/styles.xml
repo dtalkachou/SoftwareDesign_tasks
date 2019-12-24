@@ -8,6 +8,23 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:textViewStyle">@style/AppTheme.TextView</item>
+        <item name="checkboxStyle">@style/Widget.MaterialComponents.CompoundButton.CheckBox</item>
+    </style>
+
+    <style name="AppTheme.TextView" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textColor">@color/colorLight</item>
+    </style>
+
+    <style name="medium" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="CheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:colorControlActivated">@color/colorBlue</item>
+        <item name="android:colorControlHighlight">#293498DB</item>
     </style>
 
     <style name="BoardHeaderTextView" parent="Widget.MaterialComponents.TextView">

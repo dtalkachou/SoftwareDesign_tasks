@@ -1,10 +1,18 @@
 <resources>
     <string name="app_name">Battleship</string>
 
-    <string name="sign_in">Sign in</string>
-    <string name="sign_out">Sign out</string>
-    <string name="sign_in_description">Sign in to start playing.\n
+    <string name="sign_in_text">Sign in</string>
+    <string name="sign_out_text">Sign out</string>
+    <string name="sign_in_description_text">Sign in to start playing.\n
         Play with friends and other people online!</string>
+
+    <string name="room_list_header_text">List of room</string>
+    <string name="room_list_empty_text">The list of game rooms is empty, but\n
+        you can create your own room.</string>
+
+    <string name="create_room_text">Create room</string>
+    <string name="password_text">Password</string>
+    <string name="password_hint_text">e.g. 1234</string>
 
     <string name="tiles_col1_header">1</string>
     <string name="tiles_col2_header">2</string>
