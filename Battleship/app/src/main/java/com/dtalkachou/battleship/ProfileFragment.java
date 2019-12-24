@@ -15,14 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.facebook.login.LoginManager;
-
-import java.util.logging.LogManager;
 
 
 public class ProfileFragment extends Fragment {
-    public static String ARG_PROFILE_PICTURE_URI = "mProfilePictureUri";
-    public static String ARG_FIRST_NAME = "mFirstName";
+    private static String ARG_PROFILE_PICTURE_URI = "mProfilePictureUri";
+    private static String ARG_FIRST_NAME = "mFirstName";
 
     private Uri mProfilePictureUri;
     private String mFirstName;
@@ -67,7 +64,6 @@ public class ProfileFragment extends Fragment {
         mSignOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginManager.getInstance().logOut();
                 mListener.onSignOut();
             }
         });

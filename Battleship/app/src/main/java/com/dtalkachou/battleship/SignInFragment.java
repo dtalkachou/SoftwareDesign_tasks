@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -40,7 +41,7 @@ public class SignInFragment extends Fragment implements
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        mListener.onSignIn();
+                        mListener.onSignIn(loginResult.getAccessToken());
                     }
 
                     @Override
@@ -91,6 +92,6 @@ public class SignInFragment extends Fragment implements
     }
 
     public interface OnSignInListener {
-        void onSignIn();
+        void onSignIn(AccessToken token);
     }
 }
