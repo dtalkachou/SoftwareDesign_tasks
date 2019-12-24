@@ -51,12 +51,11 @@ public class SignInFragment extends Fragment implements
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        mListener.onSignIn(RESULT_OK);
+                        mListener.onSignIn();
                     }
 
                     @Override
                     public void onCancel() {
-                        mListener.onSignIn(RESULT_CANCELED);
                     }
 
                     @Override
@@ -92,6 +91,6 @@ public class SignInFragment extends Fragment implements
     }
 
     public interface OnSignInListener {
-        void onSignIn(int resultCode);
+        void onSignIn();
     }
 }

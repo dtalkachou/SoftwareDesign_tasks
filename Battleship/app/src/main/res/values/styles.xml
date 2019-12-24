@@ -16,7 +16,7 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="iconTint">@color/colorAccent</item>
         <item name="rippleColor">#299B59B6</item>
-        <item name="iconSize">16dp</item>
+        <item name="iconSize">20dp</item>
     </style>
 
     <style name="BoardHeaderTextView" parent="Widget.MaterialComponents.TextView">

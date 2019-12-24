@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".SignInFragment">
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:context=".SignInFragment"
+        android:background="#66000000">
 
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textColor="@color/colorLight"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/sign_in_description" />
 
     <com.google.android.material.button.MaterialButton
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/sign_in_button"
             style="@style/SignButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             app:icon="@drawable/ic_facebook"
             android:text="@string/sign_in" />
 
-</FrameLayout>
+</LinearLayout>

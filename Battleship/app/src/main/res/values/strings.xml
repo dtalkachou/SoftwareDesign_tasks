@@ -3,7 +3,8 @@
 
     <string name="sign_in">Sign in</string>
     <string name="sign_out">Sign out</string>
-    <string name="anonymous">anonymous</string>
+    <string name="sign_in_description">Sign in to start playing.\n
+        Play with friends and other people online!</string>
 
     <string name="tiles_col1_header">1</string>
     <string name="tiles_col2_header">2</string>
@@ -28,4 +29,7 @@
 
     <string name="facebook_app_id">2660225657388546</string>
     <string name="fb_login_protocol_scheme">fb2660225657388546</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

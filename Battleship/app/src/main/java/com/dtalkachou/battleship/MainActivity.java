@@ -1,50 +1,85 @@
 package com.dtalkachou.battleship;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.facebook.AccessToken;
 import com.facebook.Profile;
-import com.facebook.login.LoginManager;
 
 public class MainActivity extends AppCompatActivity implements
         SignInFragment.OnSignInListener,
-        ProfileFragment.OnSignOutListener {
+        ProfileFragment.OnSignOutListener,
+        RoomListFragment.OnFragmentInteractionListener,
+        CreateRoomFragment.OnFragmentInteractionListener{
+
+    private ProfileFragment mProfileFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Fragment fragment = AccessToken.getCurrentAccessToken() == null
-                ? new SignInFragment() : getProfileFragmentInstance();
-        initProfileFrame(fragment);
+        if (AccessToken.getCurrentAccessToken() != null) {
+            onSignIn();
+        }
+        else {
+            setEnabledRoomFragments(false);
+        }
     }
 
-    private void initProfileFrame(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().
-                beginTransaction();
-        fragmentTransaction.replace(R.id.profile_frame, fragment);
-        fragmentTransaction.commit();
+    private static void setEnabledViewGroup(ViewGroup viewGroup, boolean enabled) {
+        int childCount = viewGroup.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View view = viewGroup.getChildAt(i);
+            view.setEnabled(enabled);
+            if (view instanceof ViewGroup) {
+                setEnabledViewGroup((ViewGroup) view, enabled);
+            }
+        }
     }
 
-    private ProfileFragment getProfileFragmentInstance() {
-        Profile profile = Profile.getCurrentProfile();
-        return ProfileFragment.newInstance(profile.getProfilePictureUri(250, 250),
-                profile.getFirstName());
+    private void setEnabledRoomFragments(boolean enabled) {
+        setEnabledViewGroup((ViewGroup) findViewById(R.id.room_list_fragment), enabled);
+        setEnabledViewGroup((ViewGroup) findViewById(R.id.create_room_fragment), enabled);
     }
 
     @Override
-    public void onSignIn(int resultCode) {
-        if (resultCode == RESULT_OK) {
-            initProfileFrame(getProfileFragmentInstance());
-        }
+    public void onSignIn() {
+        Profile profile = Profile.getCurrentProfile();
+        mProfileFragment = ProfileFragment.newInstance(profile.getProfilePictureUri(125, 125),
+                profile.getFirstName());
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().
+                beginTransaction();
+        fragmentTransaction.replace(R.id.profile_frame, mProfileFragment);
+        fragmentTransaction.commit();
+
+        findViewById(R.id.sign_in_fragment).setVisibility(View.GONE);
+        findViewById(R.id.profile_frame).setVisibility(View.VISIBLE);
+
+        setEnabledRoomFragments(true);
     }
 
     @Override
     public void onSignOut() {
-        initProfileFrame(new SignInFragment());
+        setEnabledRoomFragments(false);
+
+        findViewById(R.id.profile_frame).setVisibility(View.GONE);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().
+                beginTransaction();
+        fragmentTransaction.remove(mProfileFragment);
+        fragmentTransaction.commit();
+
+        findViewById(R.id.sign_in_fragment).setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
     }
 }

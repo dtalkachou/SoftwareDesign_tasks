@@ -42,6 +42,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mProfilePictureUri = getArguments().getParcelable(ARG_PROFILE_PICTURE_URI);
             mFirstName = getArguments().getString(ARG_FIRST_NAME);
@@ -58,7 +59,11 @@ public class ProfileFragment extends Fragment {
         Button mSignOutButton = view.findViewById(R.id.sign_out_button);
 
         mProfileFirstName.setText(mFirstName);
-        Glide.with(this).load(mProfilePictureUri).into(mProfilePictureImageView);
+
+        Glide.with(this).load(mProfilePictureUri).
+                placeholder(R.drawable.com_facebook_profile_picture_blank_square).
+                into(mProfilePictureImageView);
+
         mSignOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

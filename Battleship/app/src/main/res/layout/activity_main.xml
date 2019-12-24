@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <FrameLayout
-            android:id="@+id/profile_frame"
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@drawable/divider_horizontal"
+            android:showDividers="middle"
+            android:orientation="vertical" >
+
+        <FrameLayout
+                android:id="@+id/profile_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="16dp"
+                android:visibility="gone" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divider_vertical"
+                android:showDividers="middle"
+                android:orientation="horizontal" >
+
+            <fragment
+                    android:id="@+id/room_list_fragment"
+                    class="com.dtalkachou.battleship.RoomListFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".6" />
+
+            <fragment
+                    android:id="@+id/create_room_fragment"
+                    class="com.dtalkachou.battleship.CreateRoomFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".4" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <fragment
+            android:id="@+id/sign_in_fragment"
+            class="com.dtalkachou.battleship.SignInFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-</LinearLayout>
+
+</FrameLayout>

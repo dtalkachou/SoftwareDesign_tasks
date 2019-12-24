@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#094F59</color>
     <color name="colorPrimary">#108292</color>
     <color name="colorAccent">#9B59B6</color>
+    <color name="colorDivider">#4E6378</color>
     <color name="colorBlue">#3498DB</color>
     <color name="colorLime">#20CC71</color>
     <color name="colorLight">#DDDDDD</color>
