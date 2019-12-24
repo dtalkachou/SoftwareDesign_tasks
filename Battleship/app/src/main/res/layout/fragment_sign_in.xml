@@ -20,7 +20,12 @@
     <com.google.android.material.button.MaterialButton
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/sign_in_button"
-            style="@style/SignButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:iconSize="20dp"
+            app:strokeColor="@color/colorLime"
+            android:textColor="@color/colorLime"
+            app:iconTint="@color/colorLime"
+            app:rippleColor="#2920CC71"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:icon="@drawable/ic_facebook"

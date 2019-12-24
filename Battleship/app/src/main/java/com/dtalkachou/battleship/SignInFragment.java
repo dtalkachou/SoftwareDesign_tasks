@@ -14,14 +14,13 @@ import android.widget.Button;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
 import java.util.Arrays;
-
-import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
 
 public class SignInFragment extends Fragment implements
         View.OnClickListener {
@@ -36,16 +35,6 @@ public class SignInFragment extends Fragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCallbackManager = CallbackManager.Factory.create();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
-
-        Button mSignInButton = view.findViewById(R.id.sign_in_button);
-
-        mSignInButton.setOnClickListener(this);
 
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -62,6 +51,17 @@ public class SignInFragment extends Fragment implements
                     public void onError(FacebookException exception) {
                     }
                 });
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
+
+        Button mSignInButton = view.findViewById(R.id.sign_in_button);
+
+        mSignInButton.setOnClickListener(this);
 
         return view;
     }

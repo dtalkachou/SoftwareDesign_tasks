@@ -3,20 +3,11 @@
     <style name="AppTheme" parent="Theme.MaterialComponents">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="android:textColor">@color/colorLight</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="SignButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="strokeColor">@color/colorAccent</item>
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="iconTint">@color/colorAccent</item>
-        <item name="rippleColor">#299B59B6</item>
-        <item name="iconSize">20dp</item>
     </style>
 
     <style name="BoardHeaderTextView" parent="Widget.MaterialComponents.TextView">

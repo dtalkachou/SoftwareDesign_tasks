@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.facebook.AccessToken;
 import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 
 public class MainActivity extends AppCompatActivity implements
         SignInFragment.OnSignInListener,
@@ -25,7 +26,13 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         if (AccessToken.getCurrentAccessToken() != null) {
-            onSignIn();
+            try {
+                onSignIn();
+            }
+            catch (NullPointerException e) {
+                LoginManager.getInstance().logOut();
+                setEnabledRoomFragments(false);
+            }
         }
         else {
             setEnabledRoomFragments(false);
