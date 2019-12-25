@@ -11,8 +11,12 @@
         you can create your own room.</string>
 
     <string name="create_room_text">Create room</string>
-    <string name="password_text">Password</string>
-    <string name="password_hint_text">e.g. 1234</string>
+    <string name="room_id_label_text">Room ID</string>
+    <string name="password_label_text">Password</string>
+    <string name="protect_by_pin_text">Protect by PIN</string>
+
+    <string name="your_created_room_text">Your created room</string>
+    <string name="remove_room_text">Remove room</string>
 
     <string name="tiles_col1_header">1</string>
     <string name="tiles_col2_header">2</string>

@@ -26,8 +26,7 @@ public class ProfileFragment extends Fragment {
 
     private OnSignOutListener mListener;
 
-    public static ProfileFragment newInstance(Uri profilePictureUri,
-                                            String firstName) {
+    public static ProfileFragment newInstance(Uri profilePictureUri, String firstName) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_PROFILE_PICTURE_URI, profilePictureUri);
@@ -51,20 +50,22 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        TextView mProfileFirstName = view.findViewById(R.id.profile_first_name);
-        ImageView mProfilePictureImageView = view.findViewById(R.id.profile_picture);
-        Button mSignOutButton = view.findViewById(R.id.sign_out_button);
+        TextView profileFirstName = view.findViewById(R.id.profile_first_name);
+        ImageView profilePictureImageView = view.findViewById(R.id.profile_picture);
+        Button signOutButton = view.findViewById(R.id.sign_out_button);
 
-        mProfileFirstName.setText(mFirstName);
+        profileFirstName.setText(mFirstName);
 
         Glide.with(this).load(mProfilePictureUri).
                 placeholder(R.drawable.com_facebook_profile_picture_blank_square).
-                into(mProfilePictureImageView);
+                into(profilePictureImageView);
 
-        mSignOutButton.setOnClickListener(new View.OnClickListener() {
+        signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onSignOut();
+                if (mListener != null) {
+                    mListener.onSignOut();
+                }
             }
         });
 
