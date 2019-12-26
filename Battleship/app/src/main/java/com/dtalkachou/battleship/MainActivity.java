@@ -1,6 +1,7 @@
 package com.dtalkachou.battleship;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.net.Uri;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements
         fragmentTransaction.add(R.id.create_room_fragment_frame,
                 new CreateRoomFragment());
         fragmentTransaction.add(R.id.room_list_fragment_frame,
-                RoomListFragment.newInstance(ROOMS_DATABASE_REF));
+                new RoomListFragment());
         fragmentTransaction.commit();
     }
 
@@ -111,6 +112,14 @@ public class MainActivity extends AppCompatActivity implements
             fragmentTransaction.replace(R.id.create_room_fragment_frame,
                     new CreateRoomFragment());
             fragmentTransaction.commit();
+        }
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        if (fragment instanceof RoomListFragment) {
+            mDatabase.getReference(ROOMS_DATABASE_REF).
+                    addChildEventListener((RoomListFragment) fragment);
         }
     }
 

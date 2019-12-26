@@ -9,6 +9,8 @@
     <string name="room_list_header_text">List of room</string>
     <string name="room_list_empty_text">The list of game rooms is empty, but\n
         you can create your own room.</string>
+    <string name="room_owner_id_label_text">Owner ID:</string>
+    <string name="connect_text">Connect</string>
 
     <string name="create_room_text">Create room</string>
     <string name="room_id_label_text">Room ID</string>
