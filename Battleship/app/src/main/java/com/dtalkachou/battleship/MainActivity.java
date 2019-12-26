@@ -8,13 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -36,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements
         CreatedRoomDataFragment.OnRemoveRoomListener {
 
     private ProfileFragment mProfileFragment;
+    private CreatedRoomDataFragment mCreatedRoomDataFragment;
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
 
@@ -113,8 +111,11 @@ public class MainActivity extends AppCompatActivity implements
         mAuth.signOut();
         LoginManager.getInstance().logOut();
 
-        // fixme: if currentUser have created room, then remove it and update UI
         updateProfileUI();
+
+        if (mCreatedRoomDataFragment != null) {
+            mCreatedRoomDataFragment.onDestroy();
+        }
     }
 
     @Override
@@ -123,7 +124,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onCreateRoom(boolean protect) {
-        final String room_id = Integer.toString(1001);
+        DatabaseReference roomRef = mDatabase.getReference("rooms").push();
+
+        final String room_id = roomRef.getKey();
         final String password = protect ? Integer.toString(new Random().nextInt(10000)) : null;
 
         Map<String, Object> docData = new HashMap<>();
@@ -131,17 +134,17 @@ public class MainActivity extends AppCompatActivity implements
         docData.put("owner_id", mAuth.getCurrentUser().getUid());
         docData.put("password", password);
 
-        mDatabase.getReference("rooms").child(room_id).setValue(docData).
-                addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().
-                                beginTransaction();
-                        fragmentTransaction.replace(R.id.create_room_fragment_frame,
-                                CreatedRoomDataFragment.newInstance(room_id, password));
-                        fragmentTransaction.commit();
-                    }
-                });
+        roomRef.setValue(docData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                mCreatedRoomDataFragment = CreatedRoomDataFragment.newInstance(room_id, password);
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().
+                        beginTransaction();
+                fragmentTransaction.replace(R.id.create_room_fragment_frame,
+                        mCreatedRoomDataFragment);
+                fragmentTransaction.commit();
+            }
+        });
     }
 
     @Override
