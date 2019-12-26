@@ -13,8 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 
 
-public class RoomAdapter extends ArrayAdapter<Room> implements
-        View.OnClickListener {
+public class RoomAdapter extends ArrayAdapter<Room> {
     private static class ViewHolder {
         TextView roomIdTextView;
         TextView ownerIdTextView;
@@ -22,15 +21,6 @@ public class RoomAdapter extends ArrayAdapter<Room> implements
 
     public RoomAdapter(ArrayList<Room> data, Context context) {
         super(context, R.layout.room_list_item, data);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        int position = (int) v.getTag();
-        Room dataModel = getItem(position);
-
-        // Write connect to room function
     }
 
     @Override

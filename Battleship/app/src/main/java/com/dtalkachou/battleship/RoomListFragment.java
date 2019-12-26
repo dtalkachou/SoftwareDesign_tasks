@@ -1,5 +1,6 @@
 package com.dtalkachou.battleship;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.dtalkachou.models.Room;
 import com.dtalkachou.models.RoomAdapter;
@@ -37,6 +39,14 @@ public class RoomListFragment extends ListFragment
         setListAdapter(mRoomListAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onListItemClick(ListView parent, View v, int position, long id) {
+        super.onListItemClick(parent, v, position, id);
+        // todo: if it room with password then open password confirm dialog
+        Intent intent = new Intent(getActivity(), GameActivity.class);
+        startActivity(intent);
     }
 
     @Override
