@@ -27,9 +27,8 @@
                 android:showDividers="middle"
                 android:orientation="horizontal" >
 
-            <fragment
-                    android:id="@+id/room_list_fragment"
-                    class="com.dtalkachou.battleship.RoomListFragment"
+            <FrameLayout
+                    android:id="@+id/room_list_fragment_frame"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".6"

@@ -103,11 +103,12 @@ public class CreatedRoomDataFragment extends Fragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        // fixme: remove fragment with app closing
         if (mListener != null) {
             mListener.onRemoveRoom(mRoomId);
         }
+        super.onDestroyView();
     }
 
     public interface OnRemoveRoomListener {

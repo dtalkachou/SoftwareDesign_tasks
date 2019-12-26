@@ -1,6 +1,5 @@
 package com.dtalkachou.battleship;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -9,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dtalkachou.models.Room;
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,8 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Random;
 
 
@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements
         SignInFragment.OnSignInListener,
         ProfileFragment.OnSignOutListener,
         CreateRoomFragment.OnCreateRoomListener,
-        RoomListFragment.OnFragmentInteractionListener,
         CreatedRoomDataFragment.OnRemoveRoomListener {
+    private static String ROOMS_DATABASE_REF = "rooms";
 
     private ProfileFragment mProfileFragment;
     private CreatedRoomDataFragment mCreatedRoomDataFragment;
@@ -45,8 +45,12 @@ public class MainActivity extends AppCompatActivity implements
         mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.create_room_fragment_frame, new CreateRoomFragment());
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().
+                beginTransaction();
+        fragmentTransaction.add(R.id.create_room_fragment_frame,
+                new CreateRoomFragment());
+        fragmentTransaction.add(R.id.room_list_fragment_frame,
+                RoomListFragment.newInstance(ROOMS_DATABASE_REF));
         fragmentTransaction.commit();
     }
 
@@ -69,21 +73,27 @@ public class MainActivity extends AppCompatActivity implements
 
     private void updateProfileUI() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        int mSignInFragmentVisibility = currentUser != null ? View.GONE : View.VISIBLE;
-        int mProfileFrameVisibility = currentUser != null ? View.VISIBLE : View.GONE;
-        boolean mRoomFragmentsEnabled = currentUser != null;
+        int signInFragmentVisibility = currentUser != null
+                ? View.GONE : View.VISIBLE;
+        int profileFrameVisibility = currentUser != null
+                ? View.VISIBLE : View.GONE;
+        boolean roomFragmentsEnabled = currentUser != null;
 
-        findViewById(R.id.sign_in_fragment).setVisibility(mSignInFragmentVisibility);
-        findViewById(R.id.profile_frame).setVisibility(mProfileFrameVisibility);
+        findViewById(R.id.sign_in_fragment).
+                setVisibility(signInFragmentVisibility);
+        findViewById(R.id.profile_frame).
+                setVisibility(profileFrameVisibility);
 
-        setEnabledViewGroup((ViewGroup) findViewById(R.id.room_list_fragment),
-                mRoomFragmentsEnabled);
+        setEnabledViewGroup((ViewGroup) findViewById(R.id.room_list_fragment_frame),
+                roomFragmentsEnabled);
         setEnabledViewGroup((ViewGroup) findViewById(R.id.create_room_fragment_frame),
-                mRoomFragmentsEnabled);
+                roomFragmentsEnabled);
 
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().
+                beginTransaction();
         if (currentUser != null) {
-            Uri profilePictureUri = Uri.parse(currentUser.getPhotoUrl() + "?height=125");
+            Uri profilePictureUri = Uri.parse(currentUser.getPhotoUrl()
+                    + "?height=125");
             mProfileFragment = ProfileFragment.newInstance(profilePictureUri,
                     currentUser.getDisplayName());
             fragmentTransaction.replace(R.id.profile_frame, mProfileFragment);
@@ -94,9 +104,20 @@ public class MainActivity extends AppCompatActivity implements
         fragmentTransaction.commit();
     }
 
+    private void removeCreatedRoomDataUI() {
+        if (mCreatedRoomDataFragment != null) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().
+                    beginTransaction();
+            fragmentTransaction.replace(R.id.create_room_fragment_frame,
+                    new CreateRoomFragment());
+            fragmentTransaction.commit();
+        }
+    }
+
     @Override
     public void onSignIn(AccessToken token) {
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        AuthCredential credential = FacebookAuthProvider.
+                getCredential(token.getToken());
         mAuth.signInWithCredential(credential).
                 addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
@@ -112,32 +133,25 @@ public class MainActivity extends AppCompatActivity implements
         LoginManager.getInstance().logOut();
 
         updateProfileUI();
-
-        if (mCreatedRoomDataFragment != null) {
-            mCreatedRoomDataFragment.onDestroy();
-        }
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
+        removeCreatedRoomDataUI();
     }
 
     @Override
     public void onCreateRoom(boolean protect) {
-        DatabaseReference roomRef = mDatabase.getReference("rooms").push();
+        DatabaseReference roomRef = mDatabase.
+                getReference(ROOMS_DATABASE_REF).push();
 
-        final String room_id = roomRef.getKey();
-        final String password = protect ? Integer.toString(new Random().nextInt(10000)) : null;
+        final String roomId = roomRef.getKey();
+        NumberFormat nf = new DecimalFormat("0000");
+        final String password = protect ?
+                nf.format(new Random().nextInt(10000)) : null;
+        Room room = new Room(roomId, mAuth.getCurrentUser().getUid(), password);
 
-        Map<String, Object> docData = new HashMap<>();
-        docData.put("room_id", room_id);
-        docData.put("owner_id", mAuth.getCurrentUser().getUid());
-        docData.put("password", password);
-
-        roomRef.setValue(docData).addOnSuccessListener(new OnSuccessListener<Void>() {
+        roomRef.setValue(room).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                mCreatedRoomDataFragment = CreatedRoomDataFragment.newInstance(room_id, password);
+                mCreatedRoomDataFragment = CreatedRoomDataFragment.
+                        newInstance(roomId, password);
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().
                         beginTransaction();
                 fragmentTransaction.replace(R.id.create_room_fragment_frame,
@@ -149,15 +163,11 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onRemoveRoom(String roomId) {
-        mDatabase.getReference("rooms").child(roomId).removeValue().
+        mDatabase.getReference(ROOMS_DATABASE_REF).child(roomId).removeValue().
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().
-                                beginTransaction();
-                        fragmentTransaction.replace(R.id.create_room_fragment_frame,
-                                new CreateRoomFragment());
-                        fragmentTransaction.commit();
+                        removeCreatedRoomDataUI();
                     }
                 });
     }
