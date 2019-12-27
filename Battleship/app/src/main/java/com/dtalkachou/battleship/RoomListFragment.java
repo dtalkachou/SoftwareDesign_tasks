@@ -18,15 +18,21 @@ import com.dtalkachou.models.RoomAdapter;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
 
 public class RoomListFragment extends ListFragment
     implements ChildEventListener {
+    private String mCurrentUserId;
     private ArrayList<Room> mRoomList;
-    private ArrayList<String> mRoomIdList;
+    private ArrayList<DatabaseReference> mRoomRefList;
     private ArrayAdapter mRoomListAdapter;
+
+    public void setCurrentUserId(String currentUserId) {
+        mCurrentUserId = currentUserId;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +40,7 @@ public class RoomListFragment extends ListFragment
         final View view = inflater.inflate(R.layout.fragment_room_list, container, false);
 
         mRoomList = new ArrayList<>();
-        mRoomIdList = new ArrayList<>();
+        mRoomRefList = new ArrayList<>();
         mRoomListAdapter = new RoomAdapter(mRoomList, getActivity());
         setListAdapter(mRoomListAdapter);
 
@@ -44,15 +50,22 @@ public class RoomListFragment extends ListFragment
     @Override
     public void onListItemClick(ListView parent, View v, int position, long id) {
         super.onListItemClick(parent, v, position, id);
-        // todo: if it room with password then open password confirm dialog
-        Intent intent = new Intent(getActivity(), GameActivity.class);
-        startActivity(intent);
+
+        Room room = mRoomList.get(position);
+        if (!room.ownerId.equals(mCurrentUserId)) {
+            // todo: if it room with password then open password confirm dialog
+            mRoomList.get(position).setOpponentId(mCurrentUserId);
+            mRoomRefList.get(position).setValue(room);
+
+            Intent intent = new Intent(getActivity(), GameActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override
     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
         mRoomList.add(dataSnapshot.getValue(Room.class));
-        mRoomIdList.add(dataSnapshot.getKey());
+        mRoomRefList.add(dataSnapshot.getRef());
         mRoomListAdapter.notifyDataSetChanged();
     }
 
@@ -62,8 +75,8 @@ public class RoomListFragment extends ListFragment
 
     @Override
     public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-        int index = mRoomIdList.indexOf(dataSnapshot.getKey());
-        mRoomIdList.remove(index);
+        int index = mRoomRefList.indexOf(dataSnapshot.getRef());
+        mRoomRefList.remove(index);
         mRoomList.remove(index);
         mRoomListAdapter.notifyDataSetChanged();
     }

@@ -3,7 +3,9 @@ package com.dtalkachou.battleship;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +17,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.dtalkachou.models.Room;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 
-public class CreatedRoomDataFragment extends Fragment {
+public class CreatedRoomDataFragment extends Fragment
+        implements ValueEventListener {
     private static String ARG_ROOM_ID = "mRoomId";
     private static String ARG_PASSWORD = "mPassword";
 
@@ -109,6 +116,21 @@ public class CreatedRoomDataFragment extends Fragment {
             mListener.onRemoveRoom(mRoomId);
         }
         super.onDestroyView();
+    }
+
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        String opponentId = dataSnapshot.getValue(String.class);
+
+        if (opponentId != null) {
+            Intent intent = new Intent(getActivity(), GameActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
     }
 
     public interface OnRemoveRoomListener {
