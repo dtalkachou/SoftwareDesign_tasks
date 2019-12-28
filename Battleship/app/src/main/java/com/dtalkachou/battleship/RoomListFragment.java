@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.dtalkachou.models.GameInitializer;
 import com.dtalkachou.models.Room;
 import com.dtalkachou.models.RoomAdapter;
 import com.google.firebase.database.ChildEventListener;
@@ -57,7 +58,13 @@ public class RoomListFragment extends ListFragment
             mRoomList.get(position).setOpponentId(mCurrentUserId);
             mRoomRefList.get(position).setValue(room);
 
+            GameInitializer gameInitializer = new GameInitializer();
+            gameInitializer.randomShuffle();
+
             Intent intent = new Intent(getActivity(), GameActivity.class);
+            intent.putExtra("gameId", mRoomRefList.get(position).getKey());
+            intent.putExtra("role", 2);
+            intent.putExtra("myField", gameInitializer.getShips());
             startActivity(intent);
         }
     }

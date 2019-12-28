@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.dtalkachou.models.GameInitializer;
 import com.dtalkachou.models.Room;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -123,7 +124,15 @@ public class CreatedRoomDataFragment extends Fragment
         String opponentId = dataSnapshot.getValue(String.class);
 
         if (opponentId != null) {
+            GameInitializer gameInitializer = new GameInitializer();
+            gameInitializer.randomShuffle();
+
+            String gameId = dataSnapshot.getRef().getParent().getKey();
+
             Intent intent = new Intent(getActivity(), GameActivity.class);
+            intent.putExtra("gameId", gameId);
+            intent.putExtra("role", 1);
+            intent.putExtra("myField", gameInitializer.getShips());
             startActivity(intent);
         }
     }
